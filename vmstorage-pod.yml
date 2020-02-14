@@ -8,6 +8,10 @@ spec:
   containers:
   - image: victoriametrics/vmstorage
     name: vmstorage
+    volumeMounts:
+    - name: vmstorage
+      mountPath: ./victoria-metrics-data
+    args: ["-storageDataPath", "./victoria-metrics-data"]
     ports:
     - containerPort: 8400
       name: insert
@@ -15,3 +19,7 @@ spec:
     - containerPort: 8401
       name: select
       protocol: TCP
+  volumes:
+  - name: vmstorage
+    persistentVolumeClaim:
+      claimName: vmstorage
