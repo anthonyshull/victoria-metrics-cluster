@@ -4,11 +4,11 @@ metadata:
   name: vmstorage
 spec:
   ports:
-  - port: 8400
-    name: vminsert
-  - port: 8401
-    name: vmselect
-  - port: 8482
-    name: vmstorage
+    - port: 8400
+      name: vminsert
+    - port: 8401
+      name: vmselect
+    - port: 8482
+      name: vmstorage
   selector:
     app: vmstorage
