@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: vmstorage
+  labels:
+    app: vmstorage
+spec:
+  containers:
+    - image: victoriametrics/vmstorage
+      name: vmstorage
+      volumeMounts:
+        - name: vmstorage
+          mountPath: ./victoria-metrics-data
+      args: ["-storageDataPath", "./victoria-metrics-data"]
+      ports:
+        - containerPort: 8400
+          name: insert
+          protocol: TCP
+        - containerPort: 8401
+          name: select
+          protocol: TCP
+  volumes:
+    - name: vmstorage
+      persistentVolumeClaim:
+        claimName: vmstorage
